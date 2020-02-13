@@ -7,11 +7,7 @@ const prepareSingleRow = row => {
 
   if (!row.premiumId) throw Error("premiumId is required.");
 
-  return [
-    row.basicId,
-    row.premiumId,
-    row.details ? JSON.stringify(row.details) : ""
-  ];
+  return [row.basicId, row.premiumId, row.details || ""];
 };
 
 const generateData = data => {

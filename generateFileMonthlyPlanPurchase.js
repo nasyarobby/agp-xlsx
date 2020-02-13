@@ -12,12 +12,7 @@ const prepareSingleRow = row => {
   const limitAdditional = row.limitAdditional || 0;
   const maxLimitAdditional = row.maxLimitAdditional || 0;
 
-  return [
-    row.basicId,
-    limitAdditional,
-    maxLimitAdditional,
-    row.details ? JSON.stringify(row.details) : ""
-  ];
+  return [row.basicId, limitAdditional, maxLimitAdditional, row.details || ""];
 };
 
 const generateData = data => {
@@ -29,5 +24,7 @@ const generateData = data => {
 };
 
 module.exports = data => {
-  return generateFile(generateData(data), HEADERS, WORKSHEET);
+  return generateFile(generateData(data), HEADERS, WORKSHEET, [
+    require("./cleaner").stripAtSign
+  ]);
 };
