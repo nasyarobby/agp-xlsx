@@ -24,7 +24,6 @@ module.exports = (data, headers, sheetName, middlewares = []) => {
   } else {
     throw Error("data is required.");
   }
-  console.log(sheetData);
   const ws = XLSX.utils.aoa_to_sheet(sheetData);
   XLSX.utils.book_append_sheet(wb, ws, sheetName);
   return wb;
